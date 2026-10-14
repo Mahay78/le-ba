@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 172 64" role="img" aria-label="Le&amp;Ba Pintores Profesionales">
+  <title>Le&amp;Ba Pintores Profesionales</title>
+  <!-- Dos brochas cruzadas: Le (izq.) y Ba (dcha.) -->
+  <g transform="rotate(-38 30 30)">
+    <rect x="27" y="3" width="6" height="27" rx="3" fill="#C8925B"/>
+    <rect x="24.5" y="29" width="11" height="7" rx="1.5" fill="#C9D1D6"/>
+    <rect x="24.5" y="31.5" width="11" height="1.4" fill="#9AA6AD"/>
+    <path d="M24.5 36h11v9c0 5-2.5 8-5.5 10-3-2-5.5-5-5.5-10z" fill="#0F4C5C"/>
+  </g>
+  <g transform="rotate(38 30 30)">
+    <rect x="27" y="3" width="6" height="27" rx="3" fill="#C8925B"/>
+    <rect x="24.5" y="29" width="11" height="7" rx="1.5" fill="#C9D1D6"/>
+    <rect x="24.5" y="31.5" width="11" height="1.4" fill="#9AA6AD"/>
+    <path d="M24.5 36h11v9c0 5-2.5 8-5.5 10-3-2-5.5-5-5.5-10z" fill="#F4A300"/>
+  </g>
+  <!-- Trazo de pintura que une ambas brochas -->
+  <path d="M6 52.5Q30 61 54 51.5Q31 66 6 52.5Z" fill="#F4A300"/>
+  <!-- Wordmark -->
+  <text x="64" y="38" font-family="Outfit, 'Plus Jakarta Sans', system-ui, sans-serif" font-size="35" font-weight="800" letter-spacing="-0.6" fill="#0F4C5C">Le<tspan fill="#F4A300">&amp;</tspan>Ba</text>
+  <text x="65.5" y="55" font-family="'Plus Jakarta Sans', Outfit, system-ui, sans-serif" font-size="7.2" font-weight="700" letter-spacing="1.2" textLength="102" lengthAdjust="spacingAndGlyphs" fill="#0F4C5C" fill-opacity="0.72">PINTORES PROFESIONALES</text>
+</svg>

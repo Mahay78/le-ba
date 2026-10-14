@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le&Ba | Pintores Profesionales en Lanzarote — Presupuesto Gratis en 24h</title>
+  <meta name="description" content="Pintura profesional para hogares, villas y locales en Lanzarote: sin manchas, en fecha y garantizada. Especialistas en pinturas anti-salitre y radiación UV. Visita y presupuesto gratuitos en toda la isla.">
+  <link rel="canonical" href="https://www.lebapintores.es/">
+  <meta name="theme-color" content="#0F4C5C">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <!-- Estado inicial de la intro: se decide ANTES de pintar para evitar parpadeos.
+       Sin JS (o si app.js no llega a cargar) la página se muestra completa. -->
+  <script>
+    (function (d, w) {
+      var r = d.documentElement;
+      r.classList.add('js');
+      var p = new URLSearchParams(w.location.search);
+      var v = p.get('view');
+      if (v) r.classList.add('view-' + v);
+      if (w.matchMedia && w.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (!v) r.classList.add('intro-playing');
+      // Red de seguridad: si app.js no arranca la intro a tiempo, mostrar todo.
+      setTimeout(function () { if (!w.__lebaIntro) r.classList.remove('intro-playing'); }, 3500);
+    })(document, window);
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Le&Ba | Pintores Profesionales en Lanzarote">
+  <meta property="og:description" content="Pintura profesional de viviendas y villas en toda Lanzarote: Arrecife, Costa Teguise, Playa Blanca, Puerto del Carmen... Presupuesto gratuito en menos de 2 horas.">
+  <meta property="og:url" content="https://www.lebapintores.es/">
+  <meta property="og:image" content="https://www.lebapintores.es/img/og-leba.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Salón moderno recién pintado por Le&Ba en Lanzarote">
+  <meta property="og:site_name" content="Le&Ba Pintores Lanzarote">
+  <meta property="og:locale" content="es_ES">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Le&Ba | Pintores Profesionales en Lanzarote">
+  <meta name="twitter:description" content="Pintura profesional de viviendas y villas en Lanzarote. Acabados limpios, protección anti-salitre y garantía de 3 años.">
+  <meta name="twitter:image" content="https://www.lebapintores.es/img/og-leba.jpg">
+
+  <!-- Google Fonts: Preconnect + Critical Font Preload -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- JSON-LD Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["HomeAndConstructionBusiness", "PaintingService"],
+        "@id": "https://www.lebapintores.es/#business",
+        "name": "Le&Ba Pintores Lanzarote",
+        "legalName": "Le&Ba Reformas y Pintura S.L.",
+        "taxID": "B35123456",
+        "description": "Empresa de pintura profesional en Lanzarote. Viviendas, villas y apartamentos turísticos. Tratamientos anti-salitre, impermeabilización y acabados garantizados por 3 años.",
+        "url": "https://www.lebapintores.es/",
+        "logo": "https://www.lebapintores.es/logo.svg",
+        "image": "https://www.lebapintores.es/img/og-leba.jpg",
+        "telephone": "+34600123456",
+        "email": "info@lebapintores.es",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Calle León y Castillo 42",
+          "addressLocality": "Arrecife",
+          "postalCode": "35500",
+          "addressRegion": "Las Palmas",
+          "addressCountry": "ES"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 28.9630,
+          "longitude": -13.5477
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Arrecife" },
+          { "@type": "City", "name": "Teguise" },
+          { "@type": "City", "name": "Costa Teguise" },
+          { "@type": "City", "name": "Puerto del Carmen" },
+          { "@type": "City", "name": "Playa Blanca" },
+          { "@type": "City", "name": "Tías" },
+          { "@type": "City", "name": "San Bartolomé" },
+          { "@type": "City", "name": "Yaiza" },
+          { "@type": "AdministrativeArea", "name": "Isla de Lanzarote" }
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "287",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "review": [
+          {
+            "@type": "Review",
+            "author": { "@type": "Person", "name": "María García López" },
+            "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+            "reviewBody": "Trabajo impecable. Protegieron todo, terminaron en dos días y el acabado es perfecto. Repetiremos seguro."
+          },
+          {
+            "@type": "Review",
+            "author": { "@type": "Person", "name": "Carlos Ruiz Martín" },
+            "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+            "reviewBody": "El presupuesto fue cerrado al céntimo y cumplieron la fecha exacta. Muy profesionales y limpios."
+          }
+        ],
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+            "opens": "08:00",
+            "closes": "20:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "09:00",
+            "closes": "14:00"
+          }
+        ],
+        "priceRange": "€€",
+        "paymentAccepted": "Efectivo, Transferencia, Bizum, Tarjeta",
+        "currenciesAccepted": "EUR",
+        "sameAs": [
+          "https://www.instagram.com/leba_pintores",
+          "https://www.facebook.com/leba.pintores",
+          "https://www.google.com/maps/place/Le%26Ba+Pintores"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Servicios de Pintura Profesional",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pintura Interior", "description": "Acabados mate, satinado o brillo con pinturas premium lavables." }},
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pintura Exterior", "description": "Fachadas y balcones con pinturas elastoméricas resistentes a intemperie." }},
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Lacado de Puertas y Muebles", "description": "Lacado al horno o spray de alto brillo." }},
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Empapelado Decorativo", "description": "Papel pintado, vinilos texturizados y murales personalizados." }},
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Alisado de Paredes y Gotelé", "description": "Eliminación de gotelé y aplicación de masilla para paredes lisas." }},
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Impermeabilización", "description": "Membranas líquidas y sistemas de poliurea certificados." }}
+          ]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.lebapintores.es/#website",
+        "url": "https://www.lebapintores.es/",
+        "name": "Le&Ba Pintores",
+        "publisher": { "@id": "https://www.lebapintores.es/#business" },
+        "inLanguage": "es-ES"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Cuánto cuesta pintar una vivienda?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Depende de la superficie, estado de las paredes y tipo de acabado. Nuestro precio medio orientativo es de 8-14 €/m² llave en mano. La visita y el presupuesto son siempre gratuitos y sin compromiso."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Ofrecéis garantía por escrito?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, todos nuestros trabajos incluyen 3 años de garantía escrita por contrato que cubre desprendimientos, diferencias de tono y defectos de aplicación."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Protegéis los muebles y suelos?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutamente. Cubrimos suelos, muebles, zócalos y enchufes con film protector de alta calidad antes de empezar. Al finalizar retiramos todo y limpiamos a fondo."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Skip to main content (accessibility) -->
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- Sprite SVG: logo Le&Ba (dos brochas cruzadas). Se reutiliza en header y footer.
+       Brocha "Le" = currentColor (se adapta al fondo) · Brocha "Ba" = acento ámbar. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="logo-leba" viewBox="0 0 172 64">
+      <g transform="rotate(-38 30 30)">
+        <rect x="27" y="3" width="6" height="27" rx="3" fill="#C8925B"/>
+        <rect x="24.5" y="29" width="11" height="7" rx="1.5" fill="#C9D1D6"/>
+        <rect x="24.5" y="31.5" width="11" height="1.4" fill="#9AA6AD"/>
+        <path d="M24.5 36h11v9c0 5-2.5 8-5.5 10-3-2-5.5-5-5.5-10z" fill="currentColor"/>
+      </g>
+      <g transform="rotate(38 30 30)">
+        <rect x="27" y="3" width="6" height="27" rx="3" fill="#C8925B"/>
+        <rect x="24.5" y="29" width="11" height="7" rx="1.5" fill="#C9D1D6"/>
+        <rect x="24.5" y="31.5" width="11" height="1.4" fill="#9AA6AD"/>
+        <path d="M24.5 36h11v9c0 5-2.5 8-5.5 10-3-2-5.5-5-5.5-10z" fill="#F4A300"/>
+      </g>
+      <path d="M6 52.5Q30 61 54 51.5Q31 66 6 52.5Z" fill="#F4A300"/>
+      <text x="64" y="38" font-family="Outfit, 'Plus Jakarta Sans', system-ui, sans-serif" font-size="35" font-weight="800" letter-spacing="-0.6" fill="currentColor">Le<tspan fill="#F4A300">&amp;</tspan>Ba</text>
+      <text x="65.5" y="55" font-family="'Plus Jakarta Sans', Outfit, system-ui, sans-serif" font-size="7.2" font-weight="700" letter-spacing="1.2" textLength="102" lengthAdjust="spacingAndGlyphs" fill="currentColor" fill-opacity="0.72">PINTORES PROFESIONALES</text>
+    </symbol>
+  </svg>
+
+  <!-- ==================== HEADER STICKY ==================== -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner container">
+      <a href="#hero" class="logo-link" aria-label="Le&amp;Ba Pintores Profesionales — Inicio">
+        <svg class="logo-svg" viewBox="0 0 172 64" aria-hidden="true" focusable="false"><use href="#logo-leba"/></svg>
+      </a>
+
+      <nav class="main-nav" aria-label="Navegación principal">
+        <ul class="nav-list">
+          <li><a href="#servicios" class="nav-link">Servicios</a></li>
+          <li><a href="#por-que-leba" class="nav-link">Por qué Le&amp;Ba</a></li>
+          <li><a href="#antes-despues" class="nav-link">Antes/Después</a></li>
+          <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
+          <li><a href="#proceso" class="nav-link">Proceso</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="tel:+34600123456" class="phone-btn" aria-label="Llamar por teléfono">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span class="phone-number">600 123 456</span>
+        </a>
+        <a href="#calculadora" class="btn btn-primary btn-sm">Pedir Presupuesto</a>
+      </div>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Menú móvil: FUERA del <header> para que el backdrop-filter del header
+       no lo encierre (un ancestro con backdrop-filter rompe position:fixed). -->
+  <div class="mobile-nav" id="mobileNav" role="dialog" aria-modal="true" aria-label="Menú móvil" hidden>
+    <button class="mobile-nav-close" aria-label="Cerrar menú">✕</button>
+    <ul class="mobile-nav-list">
+      <li><a href="#servicios" class="mobile-nav-link">Servicios</a></li>
+      <li><a href="#por-que-leba" class="mobile-nav-link">Por qué Le&amp;Ba</a></li>
+      <li><a href="#antes-despues" class="mobile-nav-link">Antes/Después</a></li>
+      <li><a href="#opiniones" class="mobile-nav-link">Opiniones</a></li>
+      <li><a href="#proceso" class="mobile-nav-link">Proceso</a></li>
+      <li><a href="#contacto" class="mobile-nav-link">Contacto</a></li>
+    </ul>
+    <a href="tel:+34600123456" class="btn btn-outline-light btn-block">📞 Llamar Ahora</a>
+    <a href="#calculadora" class="btn btn-primary btn-block">Pedir Presupuesto</a>
+  </div>
+
+  <main id="main-content" role="main">
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero" id="hero" aria-label="Presentación">
+      <!-- Lienzo de la intro: app.js dibuja aquí la pared sin pintar y las dos brochas
+           que la van cubriendo con el color de fondo. Se elimina al terminar. -->
+      <div class="hero-paint" id="heroPaint" aria-hidden="true"></div>
+      <div class="hero-noise-overlay" aria-hidden="true"></div>
+
+      <button class="skip-intro" id="skip-intro" type="button" aria-label="Saltar animación de introducción">Saltar animación →</button>
+
+      <div class="hero-content container">
+        <div class="hero-rating-badge" aria-label="Valoración 4.9 de 5 estrellas basado en 287 reseñas">
+          <span class="stars" aria-hidden="true">★★★★★</span>
+          <span class="rating-text"><strong>4.9/5</strong> · 287 reseñas verificadas</span>
+        </div>
+
+        <h1 class="hero-title" id="heroTitle">
+          <span class="hero-word" style="--i:0">Pintura</span>
+          <span class="hero-word" style="--i:1">profesional</span>
+          <span class="hero-word" style="--i:2">para</span>
+          <span class="hero-word" style="--i:3">tu</span>
+          <span class="hero-word accent" style="--i:4">hogar:</span><br>
+          <span class="hero-word" style="--i:5">sin</span>
+          <span class="hero-word" style="--i:6">manchas,</span>
+          <span class="hero-word" style="--i:7">en</span>
+          <span class="hero-word" style="--i:8">fecha</span>
+          <span class="hero-word" style="--i:9">y</span>
+          <span class="hero-word accent" style="--i:10">garantizada.</span>
+        </h1>
+
+        <p class="hero-subtitle">Pintura profesional para hogares, villas y apartamentos en toda Lanzarote. Acabados impecables, materiales resistentes al salitre y al sol, y presupuesto cerrado sin sorpresas.</p>
+
+        <div class="hero-ctas">
+          <a href="https://wa.me/34600123456?text=Hola%20Le%26Ba%20%E2%9C%8B%20Quiero%20informaci%C3%B3n%20sobre%20pintura%20en%20Lanzarote." class="btn btn-whatsapp btn-lg" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.049-.374-.025-.523-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp Directo
+          </a>
+          <a href="#calculadora" class="btn btn-outline-light btn-lg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="10" y2="18"/><line x1="14" y1="18" x2="16" y2="18"/></svg>
+            Calcular Mi Presupuesto
+          </a>
+        </div>
+
+        <div class="hero-trust-strip" aria-label="Garantías rápidas">
+          <span class="trust-chip">✓ Toda la isla de Lanzarote</span>
+          <span class="trust-chip">✓ Visita técnica gratuita</span>
+          <span class="trust-chip">✓ Precio cerrado</span>
+          <span class="trust-chip">✓ 3 años garantía</span>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="scroll-indicator" aria-hidden="true">
+        <span class="scroll-mouse"><span class="scroll-dot"></span></span>
+        <span class="scroll-text">Descubre más</span>
+      </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 40" preserveAspectRatio="none">
+        <path d="M0 20 Q120 5 240 20 T480 20 T720 20 T960 20 T1200 20 T1440 20" fill="none" stroke="var(--color-accent)" stroke-width="3" opacity="0.25" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <!-- ==================== TRUST BAR ==================== -->
+    <section class="trust-bar" id="confianza" aria-label="Métricas de confianza">
+      <div class="container trust-grid">
+        <div class="trust-item reveal-up">
+          <svg class="trust-icon" viewBox="0 0 48 48" fill="none" stroke="var(--color-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="24" cy="24" r="20"/><polyline points="24 14 24 24 32 28"/>
+          </svg>
+          <span class="trust-number" data-target="15" data-prefix="+">+0</span>
+          <span class="trust-unit">años</span>
+          <span class="trust-label">de experiencia transformando hogares</span>
+        </div>
+        <div class="trust-item reveal-up" style="--reveal-delay: 0.1s">
+          <svg class="trust-icon" viewBox="0 0 48 48" fill="none" stroke="var(--color-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="4" y="4" width="40" height="40" rx="4"/><line x1="4" y1="24" x2="44" y2="24"/><line x1="24" y1="4" x2="24" y2="44"/>
+          </svg>
+          <span class="trust-number" data-target="50000" data-prefix="+" data-format="comma">+0</span>
+          <span class="trust-unit">m²</span>
+          <span class="trust-label">pintados con acabado perfecto</span>
+        </div>
+        <div class="trust-item reveal-up" style="--reveal-delay: 0.2s">
+          <svg class="trust-icon" viewBox="0 0 48 48" fill="none" stroke="var(--color-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 24l8 8 16-16"/><circle cx="24" cy="24" r="20"/>
+          </svg>
+          <span class="trust-number" data-target="100" data-suffix="%">0%</span>
+          <span class="trust-unit"></span>
+          <span class="trust-label">garantía escrita por contrato</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 40" preserveAspectRatio="none">
+        <path d="M0 20 Q180 8 360 20 T720 20 T1080 20 T1440 20" fill="none" stroke="var(--color-accent)" stroke-width="3" opacity="0.25" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <!-- ==================== SERVICIOS ==================== -->
+    <section class="services" id="servicios" aria-labelledby="serviciosHeading">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="section-tag">Lo que hacemos</span>
+          <h2 class="section-heading" id="serviciosHeading">Servicios integrales de pintura</h2>
+          <p class="section-subheading">Todo lo que tu hogar necesita, bajo un mismo techo profesional. Materiales premium, mano de obra certificada.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card reveal-up" tabindex="0" data-service-trigger="Interior" style="--reveal-delay: 0s">
+            <div class="card-paint-trace" aria-hidden="true"></div>
+            <div class="card-icon-wrap">
+              <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="var(--color-secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="6" y="6" width="36" height="36" rx="3"/><path d="M6 30h36"/><path d="M18 6v24"/><circle cx="33" cy="18" r="5"/>
+              </svg>
+            </div>
+            <h3>Pintura Interior</h3>
+            <p>Viviendas habituales, villas y pisos turísticos. Acabados mate o lavable con pinturas ecológicas y transpirables, resistentes a la humedad marina.</p>
+            <div class="card-footer-action">
+              <span class="card-price-hint">Desde 8 €/m²</span>
+              <a href="#calculadora" class="card-action-link" data-select-service="Interior">Calcular precio →</a>
+            </div>
+          </article>
+
+          <article class="service-card reveal-up" tabindex="0" data-service-trigger="Exterior" style="--reveal-delay: 0.08s">
+            <div class="card-paint-trace" aria-hidden="true"></div>
+            <div class="card-icon-wrap">
+              <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="var(--color-secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 40h40"/><path d="M8 40V16l16-10 16 10v24"/><rect x="18" y="26" width="12" height="14"/><path d="M24 6v4"/>
+              </svg>
+            </div>
+            <h3>Pintura Exterior &amp; Fachadas</h3>
+            <p>Especialistas en arquitectura blanca de Lanzarote: revestimientos elastoméricos y siloxánicos anti-salitre, polvo de calima y alta radiación UV.</p>
+            <div class="card-footer-action">
+              <span class="card-price-hint">Desde 10 €/m²</span>
+              <a href="#calculadora" class="card-action-link" data-select-service="Exterior">Calcular precio →</a>
+            </div>
+          </article>
+
+          <article class="service-card reveal-up" tabindex="0" data-service-trigger="Lacado" style="--reveal-delay: 0.16s">
+            <div class="card-paint-trace" aria-hidden="true"></div>
+            <div class="card-icon-wrap">
+              <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="var(--color-secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="8" y="4" width="32" height="40" rx="2"/><circle cx="24" cy="24" r="3"/><path d="M8 14h32"/><path d="M8 34h32"/>
+              </svg>
+            </div>
+            <h3>Lacado de Puertas y Carpintería</h3>
+            <p>Tratamiento de carpintería interior y exterior, puertas y pérgolas: blanco impoluto o los tonos tradicionales canarios (verde y azul Lanzarote).</p>
+            <div class="card-footer-action">
+              <span class="card-price-hint">Presupuesto a medida</span>
+              <a href="#calculadora" class="card-action-link" data-select-service="Lacado">Calcular precio →</a>
+            </div>
+          </article>
+
+          <article class="service-card reveal-up" tabindex="0" data-service-trigger="Empapelado" style="--reveal-delay: 0s">
+            <div class="card-paint-trace" aria-hidden="true"></div>
+            <div class="card-icon-wrap">
+              <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="var(--color-secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="6" y="4" width="16" height="40" rx="2"/><rect x="26" y="4" width="16" height="40" rx="2"/><path d="M10 12h8M10 20h8M10 28h8M30 12h8M30 20h8M30 28h8"/>
+              </svg>
+            </div>
+            <h3>Empapelado Decorativo</h3>
+            <p>Papeles vinílicos de alta gama, texturas naturales y murales decorativos para salones de diseño y suites vacacionales.</p>
+            <div class="card-footer-action">
+              <span class="card-price-hint">Desde 12 €/m²</span>
+              <a href="#calculadora" class="card-action-link" data-select-service="Empapelado">Calcular precio →</a>
+            </div>
+          </article>
+
+          <article class="service-card reveal-up" tabindex="0" data-service-trigger="Alisado/Gotelé" style="--reveal-delay: 0.08s">
+            <div class="card-paint-trace" aria-hidden="true"></div>
+            <div class="card-icon-wrap">
+              <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="var(--color-secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 36 Q12 28 20 36 Q28 44 36 36 Q40 32 44 36"/><rect x="4" y="8" width="40" height="24" rx="2"/><path d="M12 16h4M22 16h4M32 16h4"/>
+              </svg>
+            </div>
+            <h3>Alisado de Gotelé y Paredes</h3>
+            <p>Retirada o enlucido de gotelé antiguo con pastas mecánicas y lijado aspirado sin polvo para dejar paredes lisas y luminosas.</p>
+            <div class="card-footer-action">
+              <span class="card-price-hint">Desde 6 €/m²</span>
+              <a href="#calculadora" class="card-action-link" data-select-service="Alisado/Gotelé">Calcular precio →</a>
+            </div>
+          </article>
+
+          <article class="service-card reveal-up" tabindex="0" data-service-trigger="Impermeabilización" style="--reveal-delay: 0.16s">
+            <div class="card-paint-trace" aria-hidden="true"></div>
+            <div class="card-icon-wrap">
+              <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="var(--color-secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M8 40h32"/><path d="M12 40V20Q12 12 24 8Q36 12 36 20v20"/><path d="M20 28l4 4 4-4"/><path d="M24 18v10"/>
+              </svg>
+            </div>
+            <h3>Impermeabilización de Azoteas</h3>
+            <p>Cubiertas planas, azoteas transitables y terrazas. Sistemas continuos de poliuretano y poliurea con garantía certificada de estanqueidad.</p>
+            <div class="card-footer-action">
+              <span class="card-price-hint">Presupuesto a medida</span>
+              <a href="#calculadora" class="card-action-link" data-select-service="Impermeabilización">Calcular precio →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 40" preserveAspectRatio="none">
+        <path d="M0 20 Q160 6 320 20 T640 20 T960 20 T1280 20 T1440 20" fill="none" stroke="var(--color-accent)" stroke-width="3" opacity="0.25" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <!-- ==================== POR QUÉ LE&BA ==================== -->
+    <section class="why-us" id="por-que-leba" aria-labelledby="whyHeading">
+      <div class="container why-layout">
+        <div class="why-image-col reveal-left">
+          <div class="why-image-frame">
+            <img
+              src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=640&h=800&fit=crop&q=80"
+              alt="Pintor profesional de Le&Ba aplicando pintura con rodillo en pared interior"
+              width="640" height="800" loading="lazy"
+            >
+            <div class="why-image-badge">
+              <span class="badge-number">287</span>
+              <span class="badge-label">reseñas<br>verificadas</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="why-content-col">
+          <span class="section-tag reveal-up">La diferencia Le&amp;Ba</span>
+          <h2 class="section-heading left-aligned reveal-up" id="whyHeading">No somos unos pintores más. Somos los que no tienen que volver.</h2>
+          <p class="section-subheading left-aligned reveal-up">Cada detalle está pensado para que tú no tengas que preocuparte de nada durante la reforma.</p>
+
+          <ul class="why-list">
+            <li class="why-item reveal-up" style="--reveal-delay: 0s">
+              <div class="why-item-icon">
+                <svg viewBox="0 0 32 32" fill="none" stroke="var(--color-accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16l7 7 13-14"/></svg>
+              </div>
+              <div>
+                <h3>Presupuesto cerrado al céntimo</h3>
+                <p>Sin extras de última hora. Lo que firmas es lo que pagas. Si surge algo, te avisamos antes de tocar nada.</p>
+              </div>
+            </li>
+            <li class="why-item reveal-up" style="--reveal-delay: 0.08s">
+              <div class="why-item-icon">
+                <svg viewBox="0 0 32 32" fill="none" stroke="var(--color-accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="12"/><polyline points="16 8 16 16 22 20"/></svg>
+              </div>
+              <div>
+                <h3>Puntualidad británica</h3>
+                <p>Si acordamos lunes a las 8:00, el lunes a las 7:55 estamos llamando a tu puerta. Cumplimos plazos por contrato.</p>
+              </div>
+            </li>
+            <li class="why-item reveal-up" style="--reveal-delay: 0.16s">
+              <div class="why-item-icon">
+                <svg viewBox="0 0 32 32" fill="none" stroke="var(--color-accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 28h24"/><path d="M8 28V12l8-6 8 6v16"/><rect x="13" y="18" width="6" height="10"/></svg>
+              </div>
+              <div>
+                <h3>Casa intacta al terminar</h3>
+                <p>Protección total con film industrial, limpieza diaria y retirada de residuos incluida. Entrarás y parecerá que no hubo obras.</p>
+              </div>
+            </li>
+            <li class="why-item reveal-up" style="--reveal-delay: 0.24s">
+              <div class="why-item-icon">
+                <svg viewBox="0 0 32 32" fill="none" stroke="var(--color-accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4l3.5 7 7.5 1-5.5 5.5 1.5 7.5-6.5-3.5-6.5 3.5 1.5-7.5L4 12l7.5-1z"/></svg>
+              </div>
+              <div>
+                <h3>Materiales premium certificados</h3>
+                <p>Solo trabajamos con marcas líderes (Valpaint, Titan, Ruco, Caparol). Bajo COV, lavables y con garantía del fabricante.</p>
+              </div>
+            </li>
+          </ul>
+
+          <a href="#calculadora" class="btn btn-primary reveal-up" style="--reveal-delay: 0.3s">Quiero mi presupuesto gratis</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 40" preserveAspectRatio="none">
+        <path d="M0 20 Q200 10 400 20 T800 20 T1200 20 T1440 20" fill="none" stroke="var(--color-accent)" stroke-width="3" opacity="0.25" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <!-- ==================== ANTES / DESPUÉS ==================== -->
+    <section class="before-after" id="antes-despues" aria-labelledby="baHeading">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="section-tag">Resultados reales</span>
+          <h2 class="section-heading" id="baHeading">Mira la diferencia</h2>
+          <p class="section-subheading">Arrastra el control para comparar el antes y después real de nuestros proyectos. Sin filtros, sin trucos.</p>
+        </div>
+
+        <div class="ba-widget" id="baWidget" role="group" aria-label="Comparador interactivo antes y después">
+          <div class="ba-container" id="baContainer">
+            <picture>
+              <source srcset="img/despues-900.webp 900w, img/despues.webp 1600w" type="image/webp" sizes="(max-width: 900px) 100vw, 860px">
+              <img
+                class="ba-img ba-after"
+                src="img/despues.jpg"
+                alt="Salón reformado y recién pintado por Le&amp;Ba con acabado liso perfecto en blanco roto — resultado final"
+                width="900" height="506" loading="lazy"
+              >
+            </picture>
+            <div class="ba-before-wrapper" id="baBeforeWrapper">
+              <picture>
+                <source srcset="img/antes-900.webp 900w, img/antes.webp 1600w" type="image/webp" sizes="(max-width: 900px) 100vw, 860px">
+                <img
+                  class="ba-img ba-before"
+                  src="img/antes.jpg"
+                  alt="Mismo salón antes de la reforma con gotelé, manchas de humedad y pintura vieja amarillenta — estado original"
+                  width="900" height="506" loading="lazy"
+                >
+              </picture>
+            </div>
+            <div class="ba-handle" id="baHandle" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-label="Posición del comparador antes y después" tabindex="0">
+              <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
+                <circle cx="22" cy="22" r="20" fill="white" stroke="var(--color-primary)" stroke-width="2.5"/>
+                <path d="M16 22l-4-4m4 4l-4 4M28 22l4-4m-4 4l4 4" stroke="var(--color-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="ba-label ba-label-before">ANTES</span>
+            <span class="ba-label ba-label-after">DESPUÉS</span>
+          </div>
+          <input type="range" class="ba-range sr-only" id="baRange" min="0" max="100" value="50" aria-label="Control deslizante comparador antes/después">
+          <p class="ba-caption">Proyecto: Villa 110 m² · Costa Teguise, Lanzarote · 3 días de trabajo · Gotelé eliminado + 2 manos blanco luminoso</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 40" preserveAspectRatio="none">
+        <path d="M0 20 Q180 8 360 20 T720 20 T1080 20 T1440 20" fill="none" stroke="var(--color-accent)" stroke-width="3" opacity="0.25" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <!-- ==================== TESTIMONIOS ==================== -->
+    <section class="testimonials" id="opiniones" aria-labelledby="testimonialsHeading">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="section-tag">Opiniones verificadas</span>
+          <h2 class="section-heading" id="testimonialsHeading">Lo que dicen nuestros clientes</h2>
+          <p class="section-subheading">287 reseñas con una media de 4.9 sobre 5 en toda Lanzarote. Estas son algunas de las más recientes.</p>
+        </div>
+
+        <div class="testimonial-carousel" id="testimonialCarousel" aria-roledescription="carrusel" aria-label="Testimonios de clientes">
+          <div class="testimonial-track" id="testimonialTrack">
+            <blockquote class="testimonial-card" role="group" aria-roledescription="diapositiva" aria-label="Testimonio 1 de 4">
+              <div class="testimonial-stars" aria-label="5 estrellas">★★★★★</div>
+              <p>"Trabajo impecable. Protegieron todo con esmero, terminaron en dos días justo como prometieron y el acabado es perfecto. Las paredes quedaron lisas como la seda. Repetiremos seguro."</p>
+              <footer>
+                <div class="testimonial-avatar" aria-hidden="true">MG</div>
+                <cite>
+                  <strong>María García López</strong>
+                  <span>Pintura interior · Villa 115 m² · Costa Teguise, Lanzarote</span>
+                </cite>
+              </footer>
+            </blockquote>
+
+            <blockquote class="testimonial-card" role="group" aria-roledescription="diapositiva" aria-label="Testimonio 2 de 4">
+              <div class="testimonial-stars" aria-label="5 estrellas">★★★★★</div>
+              <p>"El presupuesto fue cerrado al céntimo y cumplieron la fecha exacta. Muy profesionales y limpios. Lo que más me sorprendió: al terminar, la casa estaba más limpia que antes de empezar."</p>
+              <footer>
+                <div class="testimonial-avatar" aria-hidden="true">CR</div>
+                <cite>
+                  <strong>Carlos Ruiz Martín</strong>
+                  <span>Alisado gotelé + pintura · Dúplex 95 m² · Arrecife, Lanzarote</span>
+                </cite>
+              </footer>
+            </blockquote>
+
+            <blockquote class="testimonial-card" role="group" aria-roledescription="diapositiva" aria-label="Testimonio 3 de 4">
+              <div class="testimonial-stars" aria-label="5 estrellas">★★★★★</div>
+              <p>"Lacaron todas las puertas y la pérgola exterior de madera. Parecen nuevos de tienda por una fracción del precio. El equipo fue puntual cada día y trató nuestro hogar con muchísimo respeto."</p>
+              <footer>
+                <div class="testimonial-avatar" aria-hidden="true">AF</div>
+                <cite>
+                  <strong>Ana Fernández Díaz</strong>
+                  <span>Lacado carpintería y pérgola · Playa Blanca, Yaiza</span>
+                </cite>
+              </footer>
+            </blockquote>
+
+            <blockquote class="testimonial-card" role="group" aria-roledescription="diapositiva" aria-label="Testimonio 4 de 4">
+              <div class="testimonial-stars" aria-label="5 estrellas">★★★★★</div>
+              <p>"Teníamos una azotea con filtraciones graves por el salitre y la lluvia. Impermeabilizaron con membrana continua y llevamos dos inviernos sin una sola gotera. Serios, técnicos y con garantía real por escrito."</p>
+              <footer>
+                <div class="testimonial-avatar" aria-hidden="true">JP</div>
+                <cite>
+                  <strong>Javier Pérez Sánchez</strong>
+                  <span>Impermeabilización azotea transitable · Puerto del Carmen, Tías</span>
+                </cite>
+              </footer>
+            </blockquote>
+          </div>
+
+          <div class="carousel-controls">
+            <button class="carousel-btn carousel-prev" id="carouselPrev" aria-label="Testimonio anterior">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Seleccionar testimonio"></div>
+            <button class="carousel-btn carousel-next" id="carouselNext" aria-label="Testimonio siguiente">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 40" preserveAspectRatio="none">
+        <path d="M0 20 Q160 6 320 20 T640 20 T960 20 T1280 20 T1440 20" fill="none" stroke="var(--color-accent)" stroke-width="3" opacity="0.25" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <!-- ==================== PROCESO EN 4 PASOS ==================== -->
+    <section class="process" id="proceso" aria-labelledby="procesoHeading">
+      <div class="container">
+        <div class="section-header reveal-up">
+          <span class="section-tag">Sin misterios</span>
+          <h2 class="section-heading" id="procesoHeading">Cómo trabajamos</h2>
+          <p class="section-subheading">Un proceso transparente en 4 pasos diseñado para tu tranquilidad absoluta.</p>
+        </div>
+
+        <ol class="timeline" role="list">
+          <li class="timeline-step reveal-up" style="--reveal-delay: 0s">
+            <div class="step-node" aria-hidden="true">1</div>
+            <div class="step-content">
+              <div class="step-icon-wrap">
+                <svg class="step-icon" viewBox="0 0 40 40" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="20" cy="14" r="8"/><path d="M6 36c0-8 6-14 14-14s14 6 14 14"/>
+                </svg>
+              </div>
+              <h3>Visita y medición gratuita</h3>
+              <p>Vamos a tu domicilio, medimos los espacios y escuchamos tus ideas. Duración: 30-45 min. Sin compromiso alguno.</p>
+              <span class="step-duration">⏱ 30-45 min</span>
+            </div>
+          </li>
+          <li class="timeline-step reveal-up" style="--reveal-delay: 0.1s">
+            <div class="step-node" aria-hidden="true">2</div>
+            <div class="step-content">
+              <div class="step-icon-wrap">
+                <svg class="step-icon" viewBox="0 0 40 40" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="6" y="4" width="28" height="32" rx="3"/><line x1="12" y1="12" x2="28" y2="12"/><line x1="12" y1="18" x2="28" y2="18"/><line x1="12" y1="24" x2="22" y2="24"/><path d="M24 28l4 4 6-8"/>
+                </svg>
+              </div>
+              <h3>Presupuesto cerrado detallado</h3>
+              <p>Recibes un desglose itemizado: materiales, mano de obra, plazos. Precio final sellado por contrato. Sin extras.</p>
+              <span class="step-duration">📄 En 24-48h</span>
+            </div>
+          </li>
+          <li class="timeline-step reveal-up" style="--reveal-delay: 0.2s">
+            <div class="step-node" aria-hidden="true">3</div>
+            <div class="step-content">
+              <div class="step-icon-wrap">
+                <svg class="step-icon" viewBox="0 0 40 40" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="4" y="16" width="32" height="18" rx="3"/><path d="M4 16l16-12 16 12"/><line x1="14" y1="24" x2="26" y2="24"/><line x1="20" y1="20" x2="20" y2="30"/>
+                </svg>
+              </div>
+              <h3>Ejecución con protección total</h3>
+              <p>Cubrimos suelos, muebles y zócalos con film industrial. Limpieza diaria. Puedes seguir viviendo en casa durante la obra.</p>
+              <span class="step-duration">🏠 Tú sigues en casa</span>
+            </div>
+          </li>
+          <li class="timeline-step reveal-up" style="--reveal-delay: 0.3s">
+            <div class="step-node" aria-hidden="true">4</div>
+            <div class="step-content">
+              <div class="step-icon-wrap">
+                <svg class="step-icon" viewBox="0 0 40 40" fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 24l6 6 12-14"/><circle cx="20" cy="20" r="16"/>
+                </svg>
+              </div>
+              <h3>Entrega limpia y garantía</h3>
+              <p>Retiramos protectores, limpiamos a fondo y entregamos certificado de garantía firmado de 3 años. Revisión conjunta.</p>
+              <span class="step-duration">✅ Garantía 3 años</span>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 40" preserveAspectRatio="none">
+        <path d="M0 20 Q180 8 360 20 T720 20 T1080 20 T1440 20" fill="none" stroke="var(--color-accent)" stroke-width="3" opacity="0.25" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <!-- ==================== FAQ ==================== -->
+    <section class="faq" id="faq" aria-labelledby="faqHeading">
+      <div class="container faq-container">
+        <div class="section-header reveal-up">
+          <span class="section-tag">Resolvemos dudas</span>
+          <h2 class="section-heading" id="faqHeading">Preguntas frecuentes</h2>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item reveal-up">
+            <summary class="faq-question">
+              ¿Cuánto cuesta pintar una vivienda?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Depende de la superficie, el estado de las paredes y el tipo de acabado. Nuestro precio medio orientativo es de <strong>8-14 €/m² llave en mano</strong> (incluye preparación, materiales y mano de obra). La visita y el presupuesto son siempre gratuitos y sin compromiso.</p>
+            </div>
+          </details>
+
+          <details class="faq-item reveal-up">
+            <summary class="faq-question">
+              ¿Ofrecéis garantía por escrito?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Sí. Todos nuestros trabajos incluyen <strong>3 años de garantía escrita por contrato</strong> que cubre desprendimientos, diferencias de tono y defectos de aplicación. Además, los materiales llevan garantía propia del fabricante.</p>
+            </div>
+          </details>
+
+          <details class="faq-item reveal-up">
+            <summary class="faq-question">
+              ¿Protegéis los muebles y suelos?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Absolutamente. Cubrimos suelos, muebles, zócalos, enchufes e incluso pomos con <strong>film protector de grado industrial</strong>. Al finalizar retiramos todo, limpiamos a fondo y nos llevamos los residuos. Tu casa queda intacta.</p>
+            </div>
+          </details>
+
+          <details class="faq-item reveal-up">
+            <summary class="faq-question">
+              ¿Puedo vivir en casa mientras pintáis?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>En la mayoría de casos sí. Usamos pinturas de <strong>bajo COV y sin olor fuerte</strong>, trabajamos por estancias y ventilamos activamente. Solo en proyectos muy grandes o con alisados extensos recomendamos despejar la zona afectada temporalmente.</p>
+            </div>
+          </details>
+
+          <details class="faq-item reveal-up">
+            <summary class="faq-question">
+              ¿Qué zonas de Lanzarote cubrís?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Cubrimos <strong>toda la isla de Lanzarote sin coste extra por desplazamiento</strong>: Arrecife, Teguise, Costa Teguise, Puerto del Carmen, Playa Blanca, Tías, San Bartolomé, Yaiza, Tinajo y Haría. Atendemos viviendas residenciales, villas independientes y complejos vacacionales.</p>
+            </div>
+          </details>
+
+          <details class="faq-item reveal-up">
+            <summary class="faq-question">
+              ¿Vuestras pinturas resisten el salitre, el sol y la calima de Lanzarote?
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Totalmente. Es el mayor reto en la isla. Por eso utilizamos recubrimientos siloxánicos y elastoméricos de primeras marcas con filtros anti-UV y barrera contra el salitre marino y el polvo de calima. Evitan desconchones, ampollas y el amarillamiento del blanco tradicional.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CALCULADORA / FORMULARIO ==================== -->
+    <section class="calculator" id="calculadora" aria-labelledby="calcHeading">
+      <div class="container">
+        <div class="calc-layout">
+          <div class="calc-info">
+            <span class="section-tag light reveal-up">Empieza hoy</span>
+            <h2 class="section-heading left-aligned reveal-up" id="calcHeading">Calcula tu presupuesto en 60 segundos</h2>
+            <p class="section-subheading left-aligned reveal-up">Selecciona tu servicio y superficie para ver tu estimación instantánea. Te la enviamos por WhatsApp para fijar tu visita técnica gratuita en cualquier punto de Lanzarote.</p>
+            <ul class="calc-benefits reveal-up">
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12l4 4 8-9"/></svg>
+                Respuesta en menos de 2 horas laborables
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12l4 4 8-9"/></svg>
+                Visita técnica gratuita en toda Lanzarote
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12l4 4 8-9"/></svg>
+                Precio cerrado por escrito sin extras
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 12l4 4 8-9"/></svg>
+                Garantía escrita de 3 años por contrato
+              </li>
+            </ul>
+            <div class="calc-social-proof reveal-up">
+              <div class="avatar-stack" aria-hidden="true">
+                <span class="avatar-chip">MG</span>
+                <span class="avatar-chip">CR</span>
+                <span class="avatar-chip">AF</span>
+                <span class="avatar-chip">+</span>
+              </div>
+              <p><strong>28 familias y propietarios</strong> presupuestaron esta semana en Lanzarote</p>
+            </div>
+          </div>
+
+          <form class="calc-form reveal-right" id="calcForm" novalidate aria-label="Formulario de solicitud de presupuesto">
+            <fieldset class="form-fieldset">
+              <legend class="field-label">Tipo de servicio <span class="required-star" aria-hidden="true">*</span></legend>
+              <div class="pill-group" role="radiogroup" aria-required="true">
+                <label class="pill-option">
+                  <input type="radio" name="servicio" value="Interior" checked required class="sr-only">
+                  <span class="pill-text">Interior</span>
+                </label>
+                <label class="pill-option">
+                  <input type="radio" name="servicio" value="Exterior" class="sr-only">
+                  <span class="pill-text">Exterior</span>
+                </label>
+                <label class="pill-option">
+                  <input type="radio" name="servicio" value="Lacado" class="sr-only">
+                  <span class="pill-text">Lacado</span>
+                </label>
+                <label class="pill-option">
+                  <input type="radio" name="servicio" value="Empapelado" class="sr-only">
+                  <span class="pill-text">Empapelado</span>
+                </label>
+                <label class="pill-option">
+                  <input type="radio" name="servicio" value="Alisado/Gotelé" class="sr-only">
+                  <span class="pill-text">Alisado/Gotelé</span>
+                </label>
+                <label class="pill-option">
+                  <input type="radio" name="servicio" value="Impermeabilización" class="sr-only">
+                  <span class="pill-text">Impermeabilización</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="metros" class="field-label">Superficie estimada (m²) <span class="required-star" aria-hidden="true">*</span></label>
+                <div class="stepper-wrap">
+                  <button type="button" class="stepper-btn" data-action="dec" aria-label="Disminuir metros cuadrados">−</button>
+                  <input type="number" id="metros" name="metros" min="10" max="5000" value="50" required class="field-input stepper-input" inputmode="numeric" aria-describedby="metrosHelp">
+                  <button type="button" class="stepper-btn" data-action="inc" aria-label="Aumentar metros cuadrados">+</button>
+                </div>
+                <small id="metrosHelp" class="field-help">Superficie aproximada en m². La visita confirma medidas exactas.</small>
+              </div>
+
+              <div class="form-group">
+                <label for="cp" class="field-label">Código Postal <span class="required-star" aria-hidden="true">*</span></label>
+                <input type="text" id="cp" name="cp" required maxlength="5" pattern="[0-9]{5}" inputmode="numeric" autocomplete="postal-code" class="field-input" placeholder="35500" value="35500" aria-required="true" aria-describedby="cpHelp">
+                <small id="cpHelp" class="field-help">CP de Lanzarote (35500 Arrecife, 35508 Costa Teguise...)</small>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nombre" class="field-label">Nombre completo <span class="required-star" aria-hidden="true">*</span></label>
+                <input type="text" id="nombre" name="nombre" required autocomplete="name" class="field-input" placeholder="Tu nombre y apellidos" aria-required="true">
+              </div>
+
+              <div class="form-group">
+                <label for="telefono" class="field-label">Teléfono <span class="required-star" aria-hidden="true">*</span></label>
+                <input type="tel" id="telefono" name="telefono" required autocomplete="tel" class="field-input" placeholder="600 123 456" pattern="[0-9+\s()-]{9,15}" aria-required="true" aria-describedby="telefonoHelp">
+                <small id="telefonoHelp" class="field-help">Para confirmarte la estimación por WhatsApp</small>
+              </div>
+            </div>
+
+            <!-- Estimación de precio en tiempo real -->
+            <div class="calc-estimate-box" id="calcEstimateBox" aria-live="polite">
+              <div class="calc-estimate-top">
+                <span class="calc-estimate-badge">⚡ Estimación en directo</span>
+                <span class="calc-estimate-service-name" id="estimateServiceName">Pintura Interior (50 m²)</span>
+              </div>
+              <div class="calc-estimate-price-row">
+                <span class="calc-estimate-amount" id="estimatePrice">400 € – 600 €</span>
+                <span class="calc-estimate-detail">Material premium + mano de obra</span>
+              </div>
+              <div class="calc-estimate-perks">
+                <span>✓ Protección anti-salitre marino</span>
+                <span>✓ Lijado aspirado sin polvo</span>
+                <span>✓ Garantía escrita 3 años</span>
+              </div>
+            </div>
+
+            <div class="form-group checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="rgpd" id="rgpd" required class="sr-only" aria-required="true">
+                <span class="checkbox-custom" aria-hidden="true"></span>
+                <span>Acepto la <a href="#" class="link-inline">política de privacidad</a> y consiento el tratamiento de mis datos para recibir el presupuesto. <span class="required-star" aria-hidden="true">*</span></span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block" id="submitBtn">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.049-.374-.025-.523-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Recibir Presupuesto por WhatsApp
+            </button>
+            <p class="form-disclaimer">🔒 Sin llamadas comerciales. Medición técnica presencial gratuita en cualquier punto de Lanzarote.</p>
+
+            <div class="toast-area" id="toastArea" role="alert" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer" id="contacto" role="contentinfo">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="#hero" class="logo-link" aria-label="Le&amp;Ba Pintores Profesionales — Inicio">
+          <svg class="logo-svg logo-sm footer-logo-svg" viewBox="0 0 172 64" aria-hidden="true" focusable="false"><use href="#logo-leba"/></svg>
+        </a>
+        <p class="footer-tagline">Pintura profesional para hogares y villas.<br>Lanzarote y toda la isla.</p>
+        <div class="footer-badges">
+          <span class="badge">🛡️ Garantía 3 años</span>
+          <span class="badge">📋 Seguro RC</span>
+          <span class="badge">✅ Calidad Certificada</span>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#">Sobre Nosotros</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#proceso">Cómo Trabajamos</a></li>
+          <li><a href="#antes-despues">Antes/Después</a></li>
+          <li><a href="#opiniones">Opiniones</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Aviso Legal</a></li>
+          <li><a href="#">Política de Privacidad</a></li>
+          <li><a href="#">Política de Cookies</a></li>
+          <li><a href="#">Condiciones de Servicio</a></li>
+          <li><a href="#">Mapa del Sitio</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contacto</h4>
+        <address>
+          <p>Le&Ba Reformas y Pintura S.L.<br>NIF: B35123456<br>Calle León y Castillo 42<br>35500 Arrecife, Lanzarote (Las Palmas)</p>
+        </address>
+        <p><a href="tel:+34600123456">📞 600 123 456</a></p>
+        <p><a href="mailto:info@lebapintores.es">✉️ info@lebapintores.es</a></p>
+        <p class="footer-hours">🕐 L-V 8:00-20:00 · Sáb 9:00-14:00</p>
+        <div class="social-links">
+          <a href="https://instagram.com/leba_pintores" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://facebook.com/leba.pintores" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.google.com/maps/place/Le%26Ba+Pintores+Lanzarote" target="_blank" rel="noopener noreferrer" aria-label="Google Maps">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 Le&Ba Reformas y Pintura S.L. — Todos los derechos reservados.</p>
+        <p class="footer-made-with">Hecho con 🧡 y rodillos de calidad en Lanzarote</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Sticky Action Bar (solo <768px) -->
+  <div class="mobile-action-bar" id="mobileActionBar" role="toolbar" aria-label="Acciones rápidas">
+    <a href="tel:+34600123456" class="mobile-action-btn mobile-action-call" aria-label="Llamar ahora">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Llamar
+    </a>
+    <a href="#calculadora" class="mobile-action-btn mobile-action-calc" aria-label="Calcular presupuesto">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="10" y2="18"/><line x1="14" y1="18" x2="16" y2="18"/></svg>
+      Presupuesto
+    </a>
+    <a href="https://wa.me/34600123456?text=Hola%20Le%26Ba%20%E2%9C%8B%20Necesito%20informaci%C3%B3n%20sobre%20pintura." class="mobile-action-btn mobile-action-wa" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.049-.374-.025-.523-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+
+  <!-- Social Proof Notification Toast -->
+  <div class="social-proof-toast" id="socialProofToast" role="status" aria-live="polite" aria-atomic="true">
+    <div class="sp-avatar" id="spAvatar" aria-hidden="true">MG</div>
+    <div class="sp-content">
+      <p class="sp-message" id="spMessage"></p>
+      <span class="sp-time" id="spTime"></span>
+    </div>
+    <button class="sp-close" id="spClose" aria-label="Cerrar notificación">×</button>
+  </div>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/34600123456?text=Hola%20Le%26Ba%20%E2%9C%8B%20Necesito%20presupuesto%20de%20pintura%20en%20Lanzarote." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat de WhatsApp" data-tooltip="¿Hablamos? Escríbenos">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.049-.374-.025-.523-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- App Script -->
+  <script src="app.js" defer></script>
+</body>
+</html>
