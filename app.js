@@ -22,6 +22,7 @@
     safeInit('scrollReveal', initScrollReveal);
     safeInit('trustCounters', initTrustCounters);
     safeInit('beforeAfter', initBeforeAfter);
+    safeInit('colorVisualizer', initColorVisualizer);
     safeInit('testimonialCarousel', initTestimonialCarousel);
     safeInit('stepper', initStepper);
     safeInit('liveCalculator', initLiveCalculator);
@@ -944,8 +945,13 @@
       const servicio = servicioEl ? servicioEl.value : 'Pintura';
       const estimateText = document.getElementById('estimatePrice')?.textContent || '';
 
+      let colorInfo = '';
+      if (window.__lebaSelectedColor) {
+        colorInfo = `\n🎨 Color elegido en el simulador: ${window.__lebaSelectedColor.name} (${window.__lebaSelectedColor.hex}) — Estancia: ${window.__lebaSelectedColor.room} — Acabado: ${window.__lebaSelectedColor.finish}.`;
+      }
+
       const mensaje =
-        `Hola Le&Ba Lanzarote 👋 Soy ${nombre}. Solicito presupuesto para ${servicio}, aprox ${m2}m² en Lanzarote (CP ${cp}). Estimación web orientativa: ${estimateText}. Mi teléfono: ${telefono}. ¡Muchas gracias!`;
+        `Hola Le&Ba Lanzarote 👋 Soy ${nombre}. Solicito presupuesto para ${servicio}, aprox ${m2}m² en Lanzarote (CP ${cp}). Estimación web orientativa: ${estimateText}.${colorInfo}\nMi teléfono: ${telefono}. ¡Muchas gracias!`;
 
       const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(mensaje)}`;
 
@@ -960,9 +966,739 @@
       if (cpField) cpField.value = '35500';
       const m2Field = document.getElementById('metros');
       if (m2Field) m2Field.value = '50';
+      const banner = document.getElementById('calcColorBanner');
+      if (banner) banner.hidden = true;
+      window.__lebaSelectedColor = null;
       updateLiveEstimate();
       document.querySelectorAll('.field-input').forEach(f => f.classList.remove('input-error'));
     });
+  }
+
+  /* ---------- SIMULADOR INTERACTIVO DE COLOR DE PAREDES ---------- */
+  function initColorVisualizer() {
+    const section = document.getElementById('simulador');
+    if (!section) return;
+
+    // 1. Data Models
+    const PALETTES = {
+      lanzarote: [
+        { name: 'Terracota Yaiza', hex: '#B56247', tag: 'Tierra', desc: 'Tierra cálida inspirada en los tonos rojizos del Parque Nacional de Timanfaya. Aporta personalidad, luminosidad y calidez acogedora.', finish: 'Mate Sedoso' },
+        { name: 'Verde Manrique', hex: '#5A7563', tag: 'Botánico', desc: 'Verde atemporal característico de la carpintería tradicional de Lanzarote. Sereno, natural y en perfecta armonía.', finish: 'Mate Sedoso' },
+        { name: 'Azul Atlántico', hex: '#2B5B75', tag: 'Profundo', desc: 'Azul océano profundo con matices minerales, ideal para dormitorios y salones relajantes con marcada personalidad.', finish: 'Mate Sedoso' },
+        { name: 'Arena de Papagayo', hex: '#DFD0B8', tag: 'Cálido', desc: 'Beige suave y cálido inspirado en las calas vírgenes del sur. Crea una sensación de amplitud y sosiego.', finish: 'Mate Sedoso' },
+        { name: 'Blanco Cal Lanzarote', hex: '#F7F7F2', tag: 'Puro', desc: 'El blanco tradicional conejero. Máxima pureza lumínica para multiplicar el sol natural en toda la estancia.', finish: 'Mate Sedoso' },
+        { name: 'Ceniza Timanfaya', hex: '#4E5357', tag: 'Volcánico', desc: 'Gris volcánico profundo, el contraste contemporáneo perfecto para destacar una pared de acento elegante.', finish: 'Mate Sedoso' }
+      ],
+      tendencias: [
+        { name: 'Verde Salvia', hex: '#A5B6A3', tag: 'Tendencia', desc: 'Verde suave empolvado, aporta frescura botánica y descanso visual. La mayor tendencia en decoración de interiores.', finish: 'Mate Sedoso' },
+        { name: 'Lino Natural', hex: '#E5DDD0', tag: 'Orgánico', desc: 'Tono orgánico neutro que viste las paredes con suave calidez sin recargar visualmente el espacio.', finish: 'Mate Sedoso' },
+        { name: 'Gris Niebla Suave', hex: '#D2D6D6', tag: 'Moderno', desc: 'Neutro contemporáneo muy luminoso y versátil, combina con maderas nobles, fibras naturales y suelos claros.', finish: 'Mate Sedoso' },
+        { name: 'Rosa Empolvado', hex: '#D7BCB5', tag: 'Elegante', desc: 'Neutro empolvado sofisticado, crea atmósferas envolventes, íntimas y con un toque cálido inigualable.', finish: 'Mate Sedoso' },
+        { name: 'Mostaza Cálido', hex: '#D3A248', tag: 'Vital', desc: 'Acento alegre y optimista, perfecto para iluminar comedores, recibidores o una pared especial.', finish: 'Mate Sedoso' },
+        { name: 'Bruma Marina', hex: '#7B97A5', tag: 'Costero', desc: 'Azul grisáceo suave y relajante, evoca la serenidad de los amaneceres en la costa atlántica de Lanzarote.', finish: 'Mate Sedoso' }
+      ]
+    };
+
+    const ROOM_PRESETS = {
+      dormitorio: {
+        name: 'Dormitorio Principal',
+        img: 'img/dormitorio.jpg',
+        hasZones: true,
+        zones: {
+          accent: 'img/mask_dormitorio_accent.png',
+          side: 'img/mask_dormitorio_side.png',
+          all: 'img/mask_dormitorio_all.png'
+        },
+        defaultZone: 'accent',
+        defaultColor: PALETTES.lanzarote[0], // Terracota Yaiza
+        service: 'Interior'
+      },
+      salon: {
+        name: 'Salón Nórdico',
+        img: 'img/despues.jpg',
+        hasZones: false,
+        zones: {
+          all: 'img/mask_salon.png'
+        },
+        defaultZone: 'all',
+        defaultColor: PALETTES.lanzarote[1], // Verde Manrique
+        service: 'Interior'
+      },
+      fachada: {
+        name: 'Fachada Lanzarote',
+        img: 'img/fachada.jpg',
+        hasZones: false,
+        zones: {
+          all: 'img/mask_fachada.png'
+        },
+        defaultZone: 'all',
+        defaultColor: PALETTES.lanzarote[3], // Arena de Papagayo
+        service: 'Exterior'
+      }
+    };
+
+    // 2. DOM Elements
+    const baseImg = document.getElementById('visBaseImg');
+    const tintLayer = document.getElementById('visTintLayer');
+    const customCanvas = document.getElementById('visCustomCanvas');
+    const zoneBar = document.getElementById('visZoneBar');
+    const zoneBtns = section.querySelectorAll('.vis-zone-btn');
+    const roomTabs = section.querySelectorAll('.vis-tab');
+    const palTabs = section.querySelectorAll('.vis-pal-tab');
+    const swatchesGrid = document.getElementById('visSwatchesGrid');
+    const customColorRow = document.getElementById('visCustomColorRow');
+    const colorPicker = document.getElementById('visColorPicker');
+    const hexInput = document.getElementById('visHexInput');
+    const finishChips = section.querySelectorAll('.vis-finish-chip');
+    const badgeDot = document.getElementById('visBadgeDot');
+    const badgeName = document.getElementById('visBadgeName');
+    const badgeHex = document.getElementById('visBadgeHex');
+    const summaryTitle = document.getElementById('visSummaryTitle');
+    const summaryCode = document.getElementById('visSummaryCode');
+    const summaryDesc = document.getElementById('visSummaryDesc');
+    const ctaPreview = document.getElementById('visCtaPreview');
+    const btnCompare = document.getElementById('visBtnCompare');
+    const btnDownload = document.getElementById('visBtnDownload');
+    const btnApplyToQuote = document.getElementById('visBtnApplyToQuote');
+    const btnWhatsAppColor = document.getElementById('visBtnWhatsAppColor');
+    const uploadOverlay = document.getElementById('visUploadOverlay');
+    const fileInput = document.getElementById('visFileInput');
+    const customTools = document.getElementById('visCustomTools');
+    const undoBtn = document.getElementById('visCustomUndo');
+    const clearBtn = document.getElementById('visCustomClear');
+
+    // 3. State
+    let currentRoom = 'dormitorio';
+    let currentZone = 'accent';
+    let currentPalette = 'lanzarote';
+    let currentColor = { ...PALETTES.lanzarote[0] };
+    let currentFinish = 'Mate Sedoso';
+    let isOriginalVisible = false;
+
+    // Custom Canvas State (User uploaded photo)
+    let customCtx = null;
+    let customImgObj = null;
+    let customTool = 'magic'; // 'magic' | 'brush' | 'eraser'
+    let isDrawing = false;
+    const customHistory = [];
+    const MAX_HISTORY = 8;
+
+    // Global selected color for calculator & WhatsApp
+    function updateGlobalSelection() {
+      window.__lebaSelectedColor = {
+        name: currentColor.name,
+        hex: currentColor.hex,
+        room: currentRoom === 'custom' ? 'Foto de mi estancia' : ROOM_PRESETS[currentRoom].name,
+        zone: currentZone,
+        finish: currentFinish,
+        service: currentRoom === 'custom' ? 'Interior' : ROOM_PRESETS[currentRoom].service
+      };
+    }
+
+    // 4. Render Swatches
+    function renderSwatches() {
+      if (!swatchesGrid) return;
+      swatchesGrid.innerHTML = '';
+      if (currentPalette === 'custom') {
+        if (customColorRow) customColorRow.hidden = false;
+        swatchesGrid.hidden = true;
+        return;
+      }
+
+      if (customColorRow) customColorRow.hidden = true;
+      swatchesGrid.hidden = false;
+
+      const colors = PALETTES[currentPalette] || [];
+      colors.forEach(col => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = `vis-swatch ${col.hex.toLowerCase() === currentColor.hex.toLowerCase() ? 'active' : ''}`;
+        btn.setAttribute('role', 'radio');
+        btn.setAttribute('aria-checked', col.hex.toLowerCase() === currentColor.hex.toLowerCase() ? 'true' : 'false');
+        btn.innerHTML = `
+          <span class="vis-swatch-circle" style="background-color: ${col.hex};"></span>
+          <span class="vis-swatch-info">
+            <strong class="vis-swatch-name">${col.name}</strong>
+            <span class="vis-swatch-code">${col.hex} · ${col.tag}</span>
+          </span>
+        `;
+        btn.addEventListener('click', () => {
+          applyColor(col);
+        });
+        swatchesGrid.appendChild(btn);
+      });
+    }
+
+    // 5. Apply Color to Views
+    function applyColor(col) {
+      currentColor = { ...col };
+      if (!currentColor.finish) currentColor.finish = currentFinish;
+
+      // Update Tint Layer for Presets
+      if (tintLayer && currentRoom !== 'custom') {
+        tintLayer.style.backgroundColor = currentColor.hex;
+      }
+
+      // Update Badges & Cards
+      if (badgeDot) badgeDot.style.backgroundColor = currentColor.hex;
+      if (badgeName) badgeName.textContent = currentColor.name;
+      if (badgeHex) badgeHex.textContent = currentColor.hex;
+      if (ctaPreview) ctaPreview.style.backgroundColor = currentColor.hex;
+      if (summaryTitle) summaryTitle.textContent = currentColor.name;
+      if (summaryCode) {
+        const catLabel = currentPalette === 'lanzarote' ? 'Colección Lanzarote' : (currentPalette === 'tendencias' ? 'Colección Tendencias' : 'Color Personalizado');
+        summaryCode.textContent = `${currentColor.hex} · ${catLabel}`;
+      }
+      if (summaryDesc) {
+        summaryDesc.textContent = currentColor.desc || 'Color seleccionado para simulación en vivo.';
+      }
+
+      // Update Pickers
+      if (colorPicker) colorPicker.value = currentColor.hex;
+      if (hexInput) hexInput.value = currentColor.hex;
+
+      // Update active swatch highlight
+      section.querySelectorAll('.vis-swatch').forEach(s => {
+        const code = s.querySelector('.vis-swatch-code')?.textContent || '';
+        const match = code.toUpperCase().includes(currentColor.hex.toUpperCase());
+        s.classList.toggle('active', match);
+        s.setAttribute('aria-checked', match ? 'true' : 'false');
+      });
+
+      // Update WhatsApp direct button
+      if (btnWhatsAppColor) {
+        const roomName = currentRoom === 'custom' ? 'mi pared' : ROOM_PRESETS[currentRoom].name;
+        const msg = `Hola Le&Ba Lanzarote 👋 He estado probando vuestro Simulador de Color y me interesa el tono ${currentColor.name} (${currentColor.hex}) en acabado ${currentFinish} para ${roomName}. ¿Podéis asesorarme o darme presupuesto?`;
+        btnWhatsAppColor.href = `https://wa.me/34600123456?text=${encodeURIComponent(msg)}`;
+      }
+
+      updateGlobalSelection();
+    }
+
+    // 6. Apply Room Preset
+    function applyRoom(roomKey) {
+      currentRoom = roomKey;
+
+      roomTabs.forEach(t => {
+        const isActive = t.dataset.room === roomKey;
+        t.classList.toggle('active', isActive);
+        t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      if (roomKey === 'custom') {
+        // Mode: user custom upload
+        if (baseImg) baseImg.hidden = true;
+        if (tintLayer) tintLayer.hidden = true;
+        if (zoneBar) zoneBar.hidden = true;
+        if (customCanvas) customCanvas.hidden = false;
+
+        if (!customImgObj) {
+          if (uploadOverlay) uploadOverlay.hidden = false;
+          if (customTools) customTools.hidden = true;
+        } else {
+          if (uploadOverlay) uploadOverlay.hidden = true;
+          if (customTools) customTools.hidden = false;
+        }
+        updateGlobalSelection();
+        return;
+      }
+
+      // Mode: Preset
+      if (baseImg) baseImg.hidden = false;
+      if (tintLayer) tintLayer.hidden = false;
+      if (customCanvas) customCanvas.hidden = true;
+      if (uploadOverlay) uploadOverlay.hidden = true;
+      if (customTools) customTools.hidden = true;
+
+      const preset = ROOM_PRESETS[roomKey];
+      if (!preset) return;
+
+      if (baseImg) {
+        baseImg.src = preset.img;
+        baseImg.alt = `${preset.name} - Le&Ba Pintores`;
+      }
+
+      // Zone bar visibility
+      if (preset.hasZones) {
+        if (zoneBar) zoneBar.hidden = false;
+        currentZone = preset.defaultZone || 'accent';
+        zoneBtns.forEach(zb => zb.classList.toggle('active', zb.dataset.zone === currentZone));
+      } else {
+        if (zoneBar) zoneBar.hidden = true;
+        currentZone = 'all';
+      }
+
+      updateMask();
+      updateGlobalSelection();
+    }
+
+    // 7. Update Mask URL
+    function updateMask() {
+      const preset = ROOM_PRESETS[currentRoom];
+      if (!preset || !tintLayer) return;
+
+      const maskUrl = preset.zones[currentZone] || preset.zones.all;
+      if (maskUrl) {
+        tintLayer.style.webkitMaskImage = `url("${maskUrl}")`;
+        tintLayer.style.maskImage = `url("${maskUrl}")`;
+      }
+    }
+
+    // 8. Compare Button (toggle original)
+    function toggleOriginal(showOrig) {
+      isOriginalVisible = typeof showOrig === 'boolean' ? showOrig : !isOriginalVisible;
+      if (tintLayer) {
+        tintLayer.style.opacity = isOriginalVisible ? '0' : '0.95';
+      }
+      if (btnCompare) {
+        btnCompare.style.background = isOriginalVisible ? 'var(--color-accent)' : '';
+        btnCompare.style.color = isOriginalVisible ? '#000' : '';
+      }
+    }
+
+    btnCompare?.addEventListener('click', () => toggleOriginal());
+    btnCompare?.addEventListener('mousedown', () => toggleOriginal(true));
+    btnCompare?.addEventListener('mouseup', () => toggleOriginal(false));
+    btnCompare?.addEventListener('touchstart', (e) => { e.preventDefault(); toggleOriginal(true); }, { passive: false });
+    btnCompare?.addEventListener('touchend', () => toggleOriginal(false));
+
+    // 9. Zone Selection
+    zoneBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        zoneBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentZone = btn.dataset.zone;
+        updateMask();
+        updateGlobalSelection();
+      });
+    });
+
+    // 10. Room Tabs
+    roomTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        applyRoom(tab.dataset.room);
+      });
+    });
+
+    // 11. Palette Tabs
+    palTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        palTabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        currentPalette = tab.dataset.palette;
+        renderSwatches();
+      });
+    });
+
+    // 12. Custom Color Picker & Hex Input
+    colorPicker?.addEventListener('input', (e) => {
+      const hex = e.target.value.toUpperCase();
+      if (hexInput) hexInput.value = hex;
+      applyColor({
+        name: `Tono Personalizado`,
+        hex: hex,
+        tag: 'RAL/NCS',
+        desc: `Color personalizado ${hex} seleccionado libremente en el simulador.`,
+        finish: currentFinish
+      });
+    });
+
+    hexInput?.addEventListener('change', (e) => {
+      let hex = e.target.value.trim().toUpperCase();
+      if (!hex.startsWith('#')) hex = '#' + hex;
+      if (/^#[0-9A-F]{6}$/i.test(hex)) {
+        if (colorPicker) colorPicker.value = hex;
+        applyColor({
+          name: `Tono Personalizado`,
+          hex: hex,
+          tag: 'RAL/NCS',
+          desc: `Color personalizado ${hex} seleccionado libremente en el simulador.`,
+          finish: currentFinish
+        });
+      }
+    });
+
+    // 13. Finish Options
+    finishChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        finishChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        const input = chip.querySelector('input');
+        if (input) {
+          input.checked = true;
+          currentFinish = input.value;
+          updateGlobalSelection();
+        }
+      });
+    });
+
+    // 14. Apply To Quote Button
+    btnApplyToQuote?.addEventListener('click', () => {
+      updateGlobalSelection();
+
+      // Update Calculator Banner
+      const banner = document.getElementById('calcColorBanner');
+      const bannerChip = document.getElementById('calcColorChip');
+      const bannerName = document.getElementById('calcColorBannerName');
+      const bannerDetail = document.getElementById('calcColorBannerDetail');
+
+      if (banner && bannerChip && bannerName && bannerDetail) {
+        banner.hidden = false;
+        bannerChip.style.backgroundColor = currentColor.hex;
+        bannerName.textContent = `${currentColor.name} (${currentColor.hex})`;
+        const roomTitle = currentRoom === 'custom' ? 'Foto propia' : ROOM_PRESETS[currentRoom].name;
+        bannerDetail.textContent = `en ${roomTitle} · Acabado ${currentFinish}`;
+      }
+
+      // Pre-select service in calculator
+      const serviceValue = currentRoom === 'fachada' ? 'Exterior' : 'Interior';
+      const serviceRadio = document.querySelector(`input[name="servicio"][value="${serviceValue}"]`);
+      if (serviceRadio) {
+        serviceRadio.checked = true;
+        // Trigger live estimate recalculation
+        if (typeof updateLiveEstimate === 'function') updateLiveEstimate();
+      }
+
+      // Smooth scroll to calculator
+      const calcSection = document.getElementById('calculadora');
+      if (calcSection) {
+        const headerOffset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height'), 10) || 76;
+        const top = calcSection.getBoundingClientRect().top + window.pageYOffset - headerOffset - 16;
+        window.scrollTo({
+          top: top,
+          behavior: prefersReducedMotion ? 'auto' : 'smooth'
+        });
+      }
+
+      showToast(`¡Color ${currentColor.name} añadido a tu estimación! 🎨`, 'success');
+    });
+
+    // Calculator Color Banner Remove button
+    const bannerRemoveBtn = document.getElementById('calcColorBannerRemove');
+    bannerRemoveBtn?.addEventListener('click', () => {
+      const banner = document.getElementById('calcColorBanner');
+      if (banner) banner.hidden = true;
+      window.__lebaSelectedColor = null;
+      showToast('Selección de color retirada del presupuesto.', 'info');
+    });
+
+    // 15. Download Design Feature (Canvas Export)
+    btnDownload?.addEventListener('click', async () => {
+      try {
+        showToast('Generando imagen de tu diseño...', 'info');
+
+        const exportCanvas = document.createElement('canvas');
+        const exportCtx = exportCanvas.getContext('2d');
+        const W = 1600;
+        const H = 900;
+        const BANNER_H = 100;
+        exportCanvas.width = W;
+        exportCanvas.height = H + BANNER_H;
+
+        if (currentRoom === 'custom' && customCanvas) {
+          exportCtx.drawImage(customCanvas, 0, 0, W, H);
+        } else {
+          // Draw Preset Image
+          const imgToDraw = new Image();
+          imgToDraw.crossOrigin = 'anonymous';
+          imgToDraw.src = baseImg.src;
+          await new Promise((resolve) => {
+            if (imgToDraw.complete) resolve();
+            else imgToDraw.onload = resolve;
+          });
+          exportCtx.drawImage(imgToDraw, 0, 0, W, H);
+
+          // Tint Wall with Mask
+          const maskToDraw = new Image();
+          maskToDraw.crossOrigin = 'anonymous';
+          const preset = ROOM_PRESETS[currentRoom];
+          const maskSrc = preset ? (preset.zones[currentZone] || preset.zones.all) : '';
+          maskToDraw.src = maskSrc;
+          await new Promise((resolve) => {
+            if (maskToDraw.complete) resolve();
+            else maskToDraw.onload = resolve;
+          });
+
+          // Create offscreen mask + color buffer
+          const offCanvas = document.createElement('canvas');
+          offCanvas.width = W;
+          offCanvas.height = H;
+          const offCtx = offCanvas.getContext('2d');
+
+          offCtx.fillStyle = currentColor.hex;
+          offCtx.fillRect(0, 0, W, H);
+
+          offCtx.globalCompositeOperation = 'destination-in';
+          offCtx.drawImage(maskToDraw, 0, 0, W, H);
+
+          exportCtx.globalAlpha = 0.95;
+          exportCtx.globalCompositeOperation = 'multiply';
+          exportCtx.drawImage(offCanvas, 0, 0);
+          exportCtx.globalAlpha = 1.0;
+          exportCtx.globalCompositeOperation = 'source-over';
+        }
+
+        // Draw Bottom Branding Bar
+        exportCtx.fillStyle = '#0F4C5C';
+        exportCtx.fillRect(0, H, W, BANNER_H);
+
+        exportCtx.fillStyle = '#F4A300';
+        exportCtx.fillRect(0, H, W, 4);
+
+        exportCtx.beginPath();
+        exportCtx.arc(50, H + BANNER_H / 2, 28, 0, Math.PI * 2);
+        exportCtx.fillStyle = currentColor.hex;
+        exportCtx.fill();
+        exportCtx.lineWidth = 3;
+        exportCtx.strokeStyle = '#FFFFFF';
+        exportCtx.stroke();
+
+        exportCtx.fillStyle = '#FFFFFF';
+        exportCtx.font = 'bold 26px Outfit, sans-serif';
+        exportCtx.fillText(`${currentColor.name} (${currentColor.hex})`, 95, H + BANNER_H / 2 - 4);
+
+        exportCtx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        exportCtx.font = '16px "Plus Jakarta Sans", sans-serif';
+        const roomName = currentRoom === 'custom' ? 'Foto Personalizada' : ROOM_PRESETS[currentRoom].name;
+        exportCtx.fillText(`Estancia: ${roomName} · Acabado: ${currentFinish}`, 95, H + BANNER_H / 2 + 24);
+
+        exportCtx.textAlign = 'right';
+        exportCtx.fillStyle = '#FFFFFF';
+        exportCtx.font = 'bold 24px Outfit, sans-serif';
+        exportCtx.fillText('Le&Ba Pintores Lanzarote', W - 40, H + BANNER_H / 2 - 4);
+
+        exportCtx.fillStyle = '#F4A300';
+        exportCtx.font = '15px "Plus Jakarta Sans", sans-serif';
+        exportCtx.fillText('www.lebapintores.es · Tel: 600 123 456', W - 40, H + BANNER_H / 2 + 22);
+
+        // Download
+        const link = document.createElement('a');
+        link.download = `leba-color-${currentColor.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}.jpg`;
+        link.href = exportCanvas.toDataURL('image/jpeg', 0.92);
+        link.click();
+        showToast('¡Diseño descargado con éxito! 🖼️', 'success');
+      } catch (err) {
+        console.error('Error generating export:', err);
+        showToast('No se pudo generar la descarga de imagen.', 'error');
+      }
+    });
+
+    // 16. Custom Photo Upload & Painting Engine
+    fileInput?.addEventListener('change', (e) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+          customImgObj = img;
+          setupCustomCanvas();
+          if (uploadOverlay) uploadOverlay.hidden = true;
+          if (customTools) customTools.hidden = false;
+          saveCustomHistory();
+          showToast('¡Foto cargada! Toca cualquier pared para colorearla. ✨', 'success');
+        };
+        img.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    function setupCustomCanvas() {
+      if (!customCanvas || !customImgObj) return;
+      const rect = customCanvas.getBoundingClientRect();
+      customCanvas.width = rect.width * (window.devicePixelRatio || 1);
+      customCanvas.height = rect.height * (window.devicePixelRatio || 1);
+      customCtx = customCanvas.getContext('2d', { willReadFrequently: true });
+      customCtx.drawImage(customImgObj, 0, 0, customCanvas.width, customCanvas.height);
+    }
+
+    window.addEventListener('resize', () => {
+      if (currentRoom === 'custom' && customImgObj) {
+        setupCustomCanvas();
+      }
+    });
+
+    section.querySelectorAll('.vis-tool-btn[data-tool]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        section.querySelectorAll('.vis-tool-btn[data-tool]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        customTool = btn.dataset.tool;
+      });
+    });
+
+    function saveCustomHistory() {
+      if (!customCanvas || !customCtx) return;
+      if (customHistory.length >= MAX_HISTORY) customHistory.shift();
+      customHistory.push(customCtx.getImageData(0, 0, customCanvas.width, customCanvas.height));
+    }
+
+    undoBtn?.addEventListener('click', () => {
+      if (customHistory.length > 1) {
+        customHistory.pop();
+        const prev = customHistory[customHistory.length - 1];
+        customCtx.putImageData(prev, 0, 0);
+        showToast('Último cambio deshecho.', 'info');
+      } else {
+        showToast('No hay más cambios que deshacer.', 'info');
+      }
+    });
+
+    clearBtn?.addEventListener('click', () => {
+      if (customCanvas && customCtx && customImgObj) {
+        customCtx.drawImage(customImgObj, 0, 0, customCanvas.width, customCanvas.height);
+        saveCustomHistory();
+        showToast('Pintura restablecida.', 'info');
+      }
+    });
+
+    function getCanvasCoords(e) {
+      const rect = customCanvas.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      const x = Math.floor((clientX - rect.left) * (customCanvas.width / rect.width));
+      const y = Math.floor((clientY - rect.top) * (customCanvas.height / rect.height));
+      return { x, y };
+    }
+
+    function handlePointerDown(e) {
+      if (currentRoom !== 'custom' || !customCtx) return;
+      const { x, y } = getCanvasCoords(e);
+
+      if (customTool === 'magic') {
+        runFloodFill(x, y);
+      } else {
+        isDrawing = true;
+        drawStroke(x, y, true);
+      }
+    }
+
+    function handlePointerMove(e) {
+      if (!isDrawing || currentRoom !== 'custom') return;
+      const { x, y } = getCanvasCoords(e);
+      drawStroke(x, y, false);
+    }
+
+    function handlePointerUp() {
+      if (isDrawing) {
+        isDrawing = false;
+        saveCustomHistory();
+      }
+    }
+
+    customCanvas?.addEventListener('mousedown', handlePointerDown);
+    customCanvas?.addEventListener('mousemove', handlePointerMove);
+    window.addEventListener('mouseup', handlePointerUp);
+
+    customCanvas?.addEventListener('touchstart', (e) => { e.preventDefault(); handlePointerDown(e); }, { passive: false });
+    customCanvas?.addEventListener('touchmove', (e) => { e.preventDefault(); handlePointerMove(e); }, { passive: false });
+    window.addEventListener('touchend', handlePointerUp);
+
+    function drawStroke(x, y, isStart) {
+      if (!customCtx) return;
+      customCtx.lineWidth = 36 * (customCanvas.width / 800);
+      customCtx.lineCap = 'round';
+      customCtx.lineJoin = 'round';
+
+      if (customTool === 'eraser') {
+        customCtx.globalCompositeOperation = 'destination-out';
+        customCtx.beginPath();
+        customCtx.arc(x, y, customCtx.lineWidth / 2, 0, Math.PI * 2);
+        customCtx.fill();
+        customCtx.globalCompositeOperation = 'source-over';
+      } else {
+        customCtx.globalCompositeOperation = 'multiply';
+        customCtx.fillStyle = currentColor.hex;
+        customCtx.strokeStyle = currentColor.hex;
+        if (isStart) {
+          customCtx.beginPath();
+          customCtx.arc(x, y, customCtx.lineWidth / 2, 0, Math.PI * 2);
+          customCtx.fill();
+        } else {
+          customCtx.lineTo(x, y);
+          customCtx.stroke();
+          customCtx.beginPath();
+          customCtx.moveTo(x, y);
+        }
+        customCtx.globalCompositeOperation = 'source-over';
+      }
+    }
+
+    function runFloodFill(startX, startY) {
+      const W = customCanvas.width;
+      const H = customCanvas.height;
+      if (startX < 0 || startX >= W || startY < 0 || startY >= H) return;
+
+      showToast('Pintando pared...', 'info');
+
+      requestAnimationFrame(() => {
+        const imgData = customCtx.getImageData(0, 0, W, H);
+        const data = imgData.data;
+
+        const targetIdx = (startY * W + startX) * 4;
+        const targetR = data[targetIdx];
+        const targetG = data[targetIdx + 1];
+        const targetB = data[targetIdx + 2];
+
+        const fillR = parseInt(currentColor.hex.slice(1, 3), 16);
+        const fillG = parseInt(currentColor.hex.slice(3, 5), 16);
+        const fillB = parseInt(currentColor.hex.slice(5, 7), 16);
+
+        const tolerance = 42;
+        const visited = new Uint8Array(W * H);
+        const queue = [startX + startY * W];
+        visited[startX + startY * W] = 1;
+
+        while (queue.length > 0) {
+          const pos = queue.pop();
+          const px = pos % W;
+          const py = Math.floor(pos / W);
+          const idx = (py * W + px) * 4;
+
+          const r = data[idx];
+          const g = data[idx + 1];
+          const b = data[idx + 2];
+
+          data[idx] = Math.round((r * fillR) / 235);
+          data[idx + 1] = Math.round((g * fillG) / 235);
+          data[idx + 2] = Math.round((b * fillB) / 235);
+
+          const neighbors = [
+            px > 0 ? pos - 1 : -1,
+            px < W - 1 ? pos + 1 : -1,
+            py > 0 ? pos - W : -1,
+            py < H - 1 ? pos + W : -1
+          ];
+
+          for (let i = 0; i < 4; i++) {
+            const nPos = neighbors[i];
+            if (nPos >= 0 && !visited[nPos]) {
+              const nIdx = nPos * 4;
+              const dr = Math.abs(data[nIdx] - targetR);
+              const dg = Math.abs(data[nIdx + 1] - targetG);
+              const db = Math.abs(data[nIdx + 2] - targetB);
+              if (dr + dg + db <= tolerance * 2.8) {
+                visited[nPos] = 1;
+                queue.push(nPos);
+              }
+            }
+          }
+        }
+
+        customCtx.putImageData(imgData, 0, 0);
+        saveCustomHistory();
+        showToast(`¡Pared pintada con ${currentColor.name}! ✨`, 'success');
+      });
+    }
+
+    // 17. Initial setup
+    renderSwatches();
+    applyRoom('dormitorio');
+    applyColor(PALETTES.lanzarote[0]);
   }
 
 })();

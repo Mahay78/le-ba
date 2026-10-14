@@ -227,6 +227,7 @@
       <nav class="main-nav" aria-label="Navegación principal">
         <ul class="nav-list">
           <li><a href="#servicios" class="nav-link">Servicios</a></li>
+          <li><a href="#simulador" class="nav-link">Simulador</a></li>
           <li><a href="#por-que-leba" class="nav-link">Por qué Le&amp;Ba</a></li>
           <li><a href="#antes-despues" class="nav-link">Antes/Después</a></li>
           <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
@@ -254,6 +255,7 @@
     <button class="mobile-nav-close" aria-label="Cerrar menú">✕</button>
     <ul class="mobile-nav-list">
       <li><a href="#servicios" class="mobile-nav-link">Servicios</a></li>
+      <li><a href="#simulador" class="mobile-nav-link">Simulador de Color</a></li>
       <li><a href="#por-que-leba" class="mobile-nav-link">Por qué Le&amp;Ba</a></li>
       <li><a href="#antes-despues" class="mobile-nav-link">Antes/Después</a></li>
       <li><a href="#opiniones" class="mobile-nav-link">Opiniones</a></li>
@@ -828,6 +830,188 @@
       </div>
     </section>
 
+    <!-- ==================== SIMULADOR DE COLOR INTERACTIVO ==================== -->
+    <section class="color-visualizer" id="simulador" aria-labelledby="simuladorHeading">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag light reveal-up">Herramienta Interactiva</span>
+          <h2 class="section-heading reveal-up" id="simuladorHeading">Simulador de Color para tus Paredes</h2>
+          <p class="section-subheading reveal-up">Visualiza en tiempo real cómo lucirá tu casa antes de aplicar la primera capa. Prueba colores inspirados en Lanzarote en nuestras estancias virtuales o sube tu propia fotografía.</p>
+        </div>
+
+        <div class="vis-app-card reveal-up">
+          <!-- Barra superior de estancias -->
+          <div class="vis-header-bar">
+            <div class="vis-room-tabs" role="tablist" aria-label="Seleccionar estancia para simulación">
+              <button type="button" class="vis-tab active" data-room="dormitorio" role="tab" aria-selected="true">
+                <span class="vis-tab-icon">🛏️</span>
+                <span>Dormitorio Principal</span>
+              </button>
+              <button type="button" class="vis-tab" data-room="salon" role="tab" aria-selected="false">
+                <span class="vis-tab-icon">🛋️</span>
+                <span>Salón Nórdico</span>
+              </button>
+              <button type="button" class="vis-tab" data-room="fachada" role="tab" aria-selected="false">
+                <span class="vis-tab-icon">🏡</span>
+                <span>Fachada Lanzarote</span>
+              </button>
+              <button type="button" class="vis-tab vis-tab-upload" data-room="custom" role="tab" aria-selected="false">
+                <span class="vis-tab-icon">📷</span>
+                <span>Subir Mi Foto</span>
+              </button>
+            </div>
+
+            <div class="vis-quick-actions">
+              <button type="button" class="vis-btn-ghost" id="visBtnCompare" title="Mantén pulsado o haz clic para alternar con la pared original" aria-label="Ver estancia original">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <span>Ver Original</span>
+              </button>
+              <button type="button" class="vis-btn-ghost" id="visBtnDownload" title="Descargar imagen con el color aplicado" aria-label="Guardar diseño de color">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Guardar Diseño</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="vis-workspace">
+            <!-- Escenario Visual -->
+            <div class="vis-stage-wrapper">
+              <div class="vis-stage" id="visStage">
+                <!-- Imagen base fotográfica -->
+                <img id="visBaseImg" src="img/dormitorio.jpg" alt="Estancia para simulación de pintura de paredes" class="vis-base-img" crossOrigin="anonymous">
+
+                <!-- Capa de color interactiva (con mask-image y blend-mode) -->
+                <div id="visTintLayer" class="vis-tint-layer" aria-hidden="true"></div>
+
+                <!-- Canvas para fotos subidas por el usuario -->
+                <canvas id="visCustomCanvas" class="vis-custom-canvas" hidden></canvas>
+
+                <!-- Selector de zona de pared (cabecero / lateral / todas) -->
+                <div class="vis-zone-bar" id="visZoneBar" aria-label="Zonas de pared">
+                  <span class="vis-zone-label">Pared:</span>
+                  <div class="vis-zone-buttons">
+                    <button type="button" class="vis-zone-btn active" data-zone="accent">Pared Cabecero</button>
+                    <button type="button" class="vis-zone-btn" data-zone="side">Pared Lateral</button>
+                    <button type="button" class="vis-zone-btn" data-zone="all">Habitación Completa</button>
+                  </div>
+                </div>
+
+                <!-- Herramientas cuando el usuario sube su propia foto -->
+                <div class="vis-custom-tools" id="visCustomTools" hidden aria-label="Herramientas de pintura para tu foto">
+                  <button type="button" class="vis-tool-btn active" data-tool="magic" title="Pincel inteligente: toca cualquier pared para colorearla">
+                    ✨ Tocar Pared
+                  </button>
+                  <button type="button" class="vis-tool-btn" data-tool="brush" title="Pincel manual para retoques">
+                    🖌️ Pincel
+                  </button>
+                  <button type="button" class="vis-tool-btn" data-tool="eraser" title="Borrador">
+                    🧹 Borrador
+                  </button>
+                  <button type="button" class="vis-tool-btn" id="visCustomUndo" title="Deshacer último cambio">
+                    ↩️ Deshacer
+                  </button>
+                  <button type="button" class="vis-tool-btn" id="visCustomClear" title="Limpiar pintura aplicada">
+                    🗑️ Reiniciar
+                  </button>
+                </div>
+
+                <!-- Diálogo para subir foto propia -->
+                <div class="vis-upload-overlay" id="visUploadOverlay" hidden>
+                  <div class="vis-upload-box">
+                    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                    <h3>Sube una foto de tu propia pared</h3>
+                    <p>Haz una foto bien iluminada a tu salón, dormitorio o fachada para probar los colores directamente en tu casa.</p>
+                    <label class="btn btn-primary btn-sm vis-upload-input-label">
+                      Seleccionar Foto desde tu Dispositivo
+                      <input type="file" id="visFileInput" accept="image/*" class="sr-only">
+                    </label>
+                    <span class="vis-upload-tip">🔒 Tu foto no se sube a ningún servidor: se procesa localmente en tu navegador con total privacidad.</span>
+                  </div>
+                </div>
+
+                <!-- Indicador de color activo -->
+                <div class="vis-active-badge">
+                  <span class="vis-badge-dot" id="visBadgeDot"></span>
+                  <div class="vis-badge-text">
+                    <strong id="visBadgeName">Terracota Yaiza</strong>
+                    <span id="visBadgeHex">#B56247</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel de Controles -->
+            <div class="vis-controls">
+              <!-- Categorías de paletas -->
+              <div class="vis-palette-header">
+                <span class="vis-palette-title">Paleta de Colores</span>
+                <div class="vis-palette-tabs" role="tablist">
+                  <button type="button" class="vis-pal-tab active" data-palette="lanzarote" role="tab" aria-selected="true">Lanzarote</button>
+                  <button type="button" class="vis-pal-tab" data-palette="tendencias" role="tab" aria-selected="false">Tendencias</button>
+                  <button type="button" class="vis-pal-tab" data-palette="custom" role="tab" aria-selected="false">Personalizado</button>
+                </div>
+              </div>
+
+              <!-- Rejilla interactiva de muestras -->
+              <div class="vis-swatches-grid" id="visSwatchesGrid" role="radiogroup" aria-label="Muestras de color">
+                <!-- Se inyecta dinámicamente vía app.js -->
+              </div>
+
+              <!-- Selector personalizado (Color Picker + Hex input) -->
+              <div class="vis-custom-color-row" id="visCustomColorRow" hidden>
+                <label for="visColorPicker" class="vis-picker-label">Elige cualquier tono o escribe el código HEX:</label>
+                <div class="vis-picker-inputs">
+                  <input type="color" id="visColorPicker" value="#B56247" class="vis-color-input" aria-label="Selector libre de color">
+                  <input type="text" id="visHexInput" value="#B56247" maxlength="7" class="vis-hex-input" placeholder="#B56247" aria-label="Código hexadecimal">
+                </div>
+              </div>
+
+              <!-- Selector de acabado -->
+              <div class="vis-finish-section">
+                <span class="vis-finish-label">Acabado recomendado para Lanzarote:</span>
+                <div class="vis-finish-options" role="radiogroup" aria-label="Acabado de pintura">
+                  <label class="vis-finish-chip active">
+                    <input type="radio" name="visFinish" value="Mate Sedoso" checked class="sr-only">
+                    <span>✨ Mate Sedoso (Sin brillos)</span>
+                  </label>
+                  <label class="vis-finish-chip">
+                    <input type="radio" name="visFinish" value="Satinado Lavable" class="sr-only">
+                    <span>🧼 Satinado Lavable</span>
+                  </label>
+                  <label class="vis-finish-chip">
+                    <input type="radio" name="visFinish" value="Anti-Salitre Elastomérica" class="sr-only">
+                    <span>🛡️ Elastomérica Anti-Salitre</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Tarjeta de información y llamada a la acción -->
+              <div class="vis-cta-card">
+                <div class="vis-cta-info">
+                  <div class="vis-cta-color-head">
+                    <span class="vis-cta-color-preview" id="visCtaPreview"></span>
+                    <div>
+                      <h4 id="visSummaryTitle">Terracota Yaiza</h4>
+                      <span class="vis-summary-code" id="visSummaryCode">#B56247 · Colección Lanzarote</span>
+                    </div>
+                  </div>
+                  <p id="visSummaryDesc">Tierra cálida inspirada en los tonos rojizos del Parque Nacional de Timanfaya. Aporta serenidad, carácter canario y luminosidad acogedora.</p>
+                </div>
+                <div class="vis-cta-actions">
+                  <button type="button" class="btn btn-primary btn-block" id="visBtnApplyToQuote">
+                    🎨 Pedir Presupuesto con este Color
+                  </button>
+                  <a href="#" class="btn btn-whatsapp btn-block" id="visBtnWhatsAppColor" target="_blank" rel="noopener noreferrer">
+                    💬 Consultar este Tono por WhatsApp
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ==================== CALCULADORA / FORMULARIO ==================== -->
     <section class="calculator" id="calculadora" aria-labelledby="calcHeading">
       <div class="container">
@@ -866,6 +1050,17 @@
           </div>
 
           <form class="calc-form reveal-right" id="calcForm" novalidate aria-label="Formulario de solicitud de presupuesto">
+            <!-- Banner de color elegido en el simulador -->
+            <div class="calc-color-banner" id="calcColorBanner" hidden>
+              <div class="calc-color-banner-chip" id="calcColorChip"></div>
+              <div class="calc-color-banner-info">
+                <span class="calc-color-banner-label">Color seleccionado en el simulador:</span>
+                <strong id="calcColorBannerName">Terracota Yaiza (#B56247)</strong>
+                <span id="calcColorBannerDetail">en Dormitorio Principal · Acabado Mate Sedoso</span>
+              </div>
+              <button type="button" class="calc-color-banner-remove" id="calcColorBannerRemove" title="Eliminar color del presupuesto" aria-label="Quitar selección de color">&times;</button>
+            </div>
+
             <fieldset class="form-fieldset">
               <legend class="field-label">Tipo de servicio <span class="required-star" aria-hidden="true">*</span></legend>
               <div class="pill-group" role="radiogroup" aria-required="true">
@@ -986,6 +1181,7 @@
         <ul>
           <li><a href="#">Sobre Nosotros</a></li>
           <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#simulador">Simulador de Color</a></li>
           <li><a href="#proceso">Cómo Trabajamos</a></li>
           <li><a href="#antes-despues">Antes/Después</a></li>
           <li><a href="#opiniones">Opiniones</a></li>
